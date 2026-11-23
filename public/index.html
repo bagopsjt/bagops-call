@@ -776,15 +776,25 @@ footer { padding: 28px 0 44px; border-top: 1px solid var(--line); font-size: 0.8
       .catch(function () { lastSent = ""; })
       .then(function () { inflight = false; if (queued) { queued = false; save(); } });
   }
-  // If the tab closes with an unsent answer, send it on the way out.
-  window.addEventListener("pagehide", function () {
+  // When the page is closed, hidden or left, send anything unsent, including an email that was
+  // typed but never "left" (no blur, no Next).
+  function flush() {
+    var typed = $("lf-email").value.trim().toLowerCase();
+    if (EMAIL_RE.test(typed)) {
+      readContact();
+      state.saved_step = Math.max(state.saved_step, 2);
+      persist();
+    }
     if (!canSave()) return;
     var body = payload();
     if (body === lastSent) return;
     lastSent = body;
     var sent = navigator.sendBeacon && navigator.sendBeacon("/api/lead", new Blob([body], { type: "application/json" }));
     if (!sent) fetch("/api/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: body, keepalive: true }).catch(function () {});
-  });
+  }
+  window.addEventListener("pagehide", flush);
+  // Phones often never fire pagehide (app switch, tab switcher); the page becoming hidden is the reliable signal.
+  document.addEventListener("visibilitychange", function () { if (document.visibilityState === "hidden") flush(); });
 
   // ----- Screens -----
   function show(step, focus) {
