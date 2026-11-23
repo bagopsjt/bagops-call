@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ============================================================
+     DESIGN TOKENS: same values as the landing page (index.html).
+     ============================================================ -->
+<style>
+:root {
+  /* Colors */
+  --bg: #121110;
+  --bg-raised: #1b1917;
+  --bg-sunken: #0d0c0b;
+  --line: #2e2a26;
+  --text: #f4efe8;
+  --text-muted: #b3aaa0;
+  --accent: #f27a2e;
+  --accent-hover: #ff8f47;
+  --on-accent: #121110;
+  --lamp: rgba(242, 122, 46, 0.10);
+
+  /* "White UI card on dark" moments */
+  --card-white: #ffffff;
+  --card-white-text: #1a1816;
+  --card-white-muted: #5c554e;
+  --card-white-line: #e6e1da;
+  --accent-ink: #a84a0c;
+
+  /* Fonts */
+  --font-display: "Poppins", system-ui, sans-serif;
+  --font-display-weight: 800;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+</style>
+
+<!-- ============================================================
+     CONFIG: the only value you need to edit.
+     ============================================================ -->
+<script>
+var CONFIG = {
+  CHECKLIST_VIDEO_URL: "" // YouTube, Loom or Vimeo link for the checklist video; leave "" to hide the slot
+};
+</script>
+
+<title>The 5-step checklist to start running Meta ads | BagOps</title>
+<meta name="description" content="The exact math and setup I use before spending a dollar on Meta. Run your numbers: breakeven CPA, breakeven ROAS and a starting daily budget.">
+<meta name="theme-color" content="#121110">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BagOps">
+<meta property="og:title" content="The 5-step checklist to start running Meta ads">
+<meta property="og:description" content="The exact math and setup I use before spending a dollar on Meta. Run your numbers.">
+<meta property="og:image" content="https://call.bagops.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23121110'/%3E%3Ctext x='32' y='46' font-family='Arial,Helvetica,sans-serif' font-size='40' font-weight='800' text-anchor='middle' fill='%23F27A2E'%3EB%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@800&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3, p, ul, ol { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+h1, h2, h3, .display { font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: -0.025em; line-height: 1.1; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 4.6vw, 3.2rem); }
+h2 { font-size: clamp(1.45rem, 3vw, 2rem); }
+h3 { font-size: 1.05rem; line-height: 1.25; letter-spacing: -0.01em; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+[hidden] { display: none !important; }
+
+.wrap { width: 100%; max-width: 820px; margin: 0 auto; padding: 0 20px; }
+section { padding: 56px 0; }
+.band { background: var(--bg-sunken); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.eyebrow, .cap-label { font-size: 0.76rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+.eyebrow { margin-bottom: 14px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 24px; background: var(--accent); color: var(--on-accent); font-family: var(--font-body); font-weight: 600; font-size: 1rem; text-decoration: none; border: 0; border-radius: 10px; cursor: pointer; transition: background 0.15s ease; }
+.btn:hover { background: var(--accent-hover); }
+.btn:disabled { opacity: 0.45; cursor: default; }
+.btn-lg { min-height: 56px; padding: 16px 30px; font-size: 1.08rem; }
+
+/* Header */
+.site-header { position: sticky; top: 0; z-index: 10; background: rgba(18, 17, 16, 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.site-header .wrap { max-width: 1120px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.wordmark { font-family: var(--font-display); font-weight: var(--font-display-weight); font-size: 1.3rem; letter-spacing: -0.02em; text-decoration: none; }
+.wordmark span { color: var(--accent); }
+.head-link { font-size: 0.95rem; font-weight: 600; padding: 12px 0; }
+.head-link:hover { color: var(--accent); }
+
+/* Hero */
+.hero { padding: 56px 0 40px; background: radial-gradient(900px 480px at 85% -10%, var(--lamp), transparent 70%); }
+.hero .sub { max-width: 34em; margin-top: 18px; font-size: 1.12rem; color: var(--text-muted); }
+.vsl { margin-top: 28px; aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--bg-sunken); }
+.vsl iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+/* Step cards */
+.steps-section { padding-top: 16px; }
+.card { background: var(--bg-raised); border: 1px solid var(--line); border-radius: 14px; padding: 28px; }
+.step { margin-top: 20px; scroll-margin-top: 84px; }
+.step-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.step-num { flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: var(--font-display-weight); font-size: 1.2rem; }
+.step h2 { text-transform: uppercase; }
+.step p { color: var(--text-muted); margin-top: 12px; }
+.step p strong, .step li strong { color: var(--text); font-weight: 600; }
+.step a { color: var(--accent); }
+.formula { margin-top: 16px; padding: 14px 16px; border-left: 3px solid var(--accent); background: var(--bg); border-radius: 0 10px 10px 0; font-weight: 600; font-size: 0.97rem; color: var(--text); }
+.formula + .formula { margin-top: 8px; }
+.formula span { color: var(--accent); }
+
+/* Tools */
+.tool { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--line); }
+.tool .cap-label { display: block; margin-bottom: 14px; }
+.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 6px; }
+.seg button { min-height: 48px; padding: 10px 12px; background: var(--bg); color: var(--text-muted); border: 1px solid var(--line); border-radius: 10px; font: inherit; font-size: 0.93rem; font-weight: 600; cursor: pointer; }
+.seg button[aria-pressed="true"] { border-color: var(--accent); color: var(--text); }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
+.field label span { font-weight: 400; color: var(--text-muted); }
+.field label { display: block; font-size: 0.9rem; font-weight: 600; margin: 14px 0 6px; }
+.money { position: relative; }
+.money::before { content: "$"; position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+.field .money input { padding-left: 28px; }
+.field input { width: 100%; min-height: 52px; padding: 12px 14px; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 10px; font: inherit; font-size: 16px; }
+.field input:focus { outline: none; border-color: var(--accent); }
+.field input::placeholder { color: var(--text-muted); opacity: 0.6; }
+
+/* White "UI card" moments */
+.card-white { background: var(--card-white); color: var(--card-white-text); border-radius: 14px; padding: 20px; }
+.outputs { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.outputs.three { grid-template-columns: 1.3fr 1fr 1fr; }
+.out-label { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--card-white-muted); }
+.out-value { display: block; margin-top: 4px; font-size: clamp(1.5rem, 4.5vw, 2.1rem); color: var(--card-white-text); white-space: nowrap; }
+.out-value.small { font-size: clamp(1.1rem, 3.4vw, 1.4rem); }
+.notice { margin-top: 14px; padding: 14px 16px; border: 1px solid var(--accent); border-radius: 10px; color: var(--text) !important; font-weight: 500; font-size: 0.97rem; }
+.step .fine { font-size: 0.92rem; }
+
+/* Caption-style stacked items (step 3) and source list (step 4) */
+.caps { margin-top: 18px; display: grid; gap: 10px; }
+.caps li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; padding: 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; }
+.caps .n { font-family: var(--font-display); font-weight: var(--font-display-weight); color: var(--accent); font-size: 1.3rem; line-height: 1.1; }
+.caps .t { display: block; font-family: var(--font-display); font-weight: var(--font-display-weight); text-transform: uppercase; font-size: 1.02rem; line-height: 1.2; color: var(--text); }
+.caps .d { display: block; margin-top: 4px; color: var(--text-muted); font-size: 0.97rem; }
+.caps .l { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 8px; font-size: 0.92rem; font-weight: 600; }
+.caps .l a { display: inline-block; padding: 6px 0; }
+.checks { display: grid; gap: 2px; }
+.checks label { display: flex; align-items: center; gap: 12px; min-height: 48px; font-weight: 500; cursor: pointer; }
+.checks input { width: 22px; height: 22px; flex: none; accent-color: var(--accent); }
+.checks span i { font-style: normal; color: var(--text-muted); font-weight: 400; }
+.sub-h { margin-top: 22px; color: var(--text); }
+.pills { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+.pills li { padding: 9px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); font-family: var(--font-display); font-weight: var(--font-display-weight); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.01em; }
+
+/* Campaign Manager settings card (step 5) */
+.cm { margin-top: 18px; padding: 6px 20px; }
+.cm li { display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 14px 0; border-top: 1px solid var(--card-white-line); }
+.cm li:first-child { border-top: 0; }
+.cm .n { font-weight: 700; color: var(--accent-ink); }
+.cm .k { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--card-white-muted); }
+.cm .v { display: block; margin-top: 2px; font-weight: 600; color: var(--card-white-text); }
+.cm .v em { font-style: normal; font-weight: 400; color: var(--card-white-muted); }
+.shot { margin-top: 18px; padding: 10px; }
+.shot img { width: 100%; border-radius: 8px; }
+.utm-out { margin-top: 16px; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: stretch; }
+.utm-out output { display: block; padding: 14px; background: var(--bg); border: 1px dashed var(--line); border-radius: 10px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.84rem; color: var(--text); word-break: break-all; min-height: 52px; }
+.utm-out output.empty { color: var(--text-muted); }
+
+/* Opt-in + closing */
+.center { text-align: center; }
+.center .lede { max-width: 34em; margin: 14px auto 0; color: var(--text-muted); }
+.optin { max-width: 460px; margin: 22px auto 0; text-align: left; }
+.optin .btn { width: 100%; margin-top: 20px; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-error { margin-top: 12px; color: var(--accent); font-size: 0.92rem; font-weight: 600; }
+.form-note { margin-top: 12px; font-size: 0.86rem; color: var(--text-muted); }
+.cta-card { padding: 44px 28px; border: 1px solid var(--accent); border-radius: 18px; background: radial-gradient(600px 260px at 50% 0%, var(--lamp), transparent 70%), var(--bg-raised); }
+.cta-card h2 { max-width: 16em; margin: 0 auto; font-size: clamp(1.7rem, 4vw, 2.5rem); }
+.cta-points { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 26px; margin-top: 22px; font-weight: 600; }
+.cta-points li { position: relative; padding-left: 24px; }
+.cta-points li::before { content: "\2713"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+.closing .btn { margin-top: 28px; }
+.center-note { text-align: center; }
+
+/* Email gate */
+.gate { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(13, 12, 11, 0.72); overflow-y: auto; }
+.gate-card { width: 100%; max-width: 440px; margin: auto; border-color: var(--accent); box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6); }
+.gate-card h2 { font-size: 1.6rem; }
+.gate-lede { margin-top: 10px; color: var(--text-muted); }
+.gate-card .btn { width: 100%; margin-top: 20px; }
+body.is-gated { overflow: hidden; }
+body.is-gated #content, body.is-gated footer { filter: blur(7px); pointer-events: none; user-select: none; }
+.cta-micro { margin-top: 12px; font-size: 0.9rem; color: var(--text-muted); }
+
+footer { padding: 28px 0 44px; border-top: 1px solid var(--line); font-size: 0.88rem; color: var(--text-muted); }
+footer .wrap { max-width: 1120px; }
+
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  section { padding: 44px 0; }
+  .hero { padding: 40px 0 28px; }
+  .card { padding: 20px 18px; }
+  .step-num { width: 38px; height: 38px; font-size: 1.05rem; }
+  .fields { grid-template-columns: 1fr; }
+  .outputs.three { grid-template-columns: 1fr 1fr; }
+  .outputs.three > :first-child { grid-column: 1 / -1; }
+  .seg { grid-template-columns: 1fr; }
+  .utm-out { grid-template-columns: 1fr; }
+  .closing .btn { width: 100%; }
+  .cta-card { padding: 32px 20px; }
+  .cta-points { flex-direction: column; align-items: flex-start; width: max-content; max-width: 100%; margin-left: auto; margin-right: auto; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<!-- Email gate: shown to direct visitors until they leave an email. Visitors from the form (?sid=) skip it. -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-h" hidden>
+  <form class="card gate-card" id="gate-form" novalidate>
+    <p class="eyebrow">Free resource</p>
+    <h2 id="gate-h">Get the 5-step checklist</h2>
+    <p class="gate-lede">Enter your email to unlock the calculators and the full setup.</p>
+    <div class="field"><label for="gate-name">First name</label><input id="gate-name" name="first_name" type="text" autocomplete="given-name" maxlength="80" required></div>
+    <div class="field"><label for="gate-email">Email</label><input id="gate-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="200" required></div>
+    <!-- Honeypot: hidden from people, filled by bots. -->
+    <div class="hp" aria-hidden="true"><label for="gate-company">Company</label><input id="gate-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
+    <p class="form-error" id="gate-error" role="alert" hidden></p>
+    <button class="btn" type="submit" id="gate-submit">Unlock the checklist</button>
+    <p class="form-note">No spam. Only used to follow up.</p>
+  </form>
+</div>
+
+<!-- 1. Header -->
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/" aria-label="BagOps home">Bag<span>Ops</span></a>
+    <a class="head-link" href="/#book" data-book="header">Book a call</a>
+  </div>
+</header>
+
+<main id="content">
+
+<!-- 2. Hero -->
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Free resource</p>
+    <h1>The 5-step checklist to start running Meta ads</h1>
+    <p class="sub">The exact math and setup I use before spending a dollar on Meta. Run your numbers below.</p>
+    <div class="vsl" id="video" hidden></div>
+  </div>
+</section>
+
+<!-- 3. The five steps -->
+<section class="steps-section">
+  <div class="wrap">
+
+    <!-- Step 1 -->
+    <article class="card step" id="step-1">
+      <div class="step-head"><span class="step-num" aria-hidden="true">1</span><h2>Know what you can afford</h2></div>
+      <p>Your <strong>breakeven CPA</strong> is your contribution margin on one order. It's the most you can pay to acquire a customer and still break even on the first order.</p>
+      <p class="formula">AOV − COGS − shipping/fulfillment − (fees + avg refunds per order) <span>=</span> Contribution margin (breakeven CPA)</p>
+      <p class="formula">AOV ÷ breakeven CPA <span>=</span> Breakeven ROAS</p>
+
+      <div class="tool">
+        <span class="cap-label">Breakeven calculator</span>
+        <div class="seg" role="group" aria-label="Offer type">
+          <button type="button" id="mode-physical" aria-pressed="true">Physical products</button>
+          <button type="button" id="mode-digital" aria-pressed="false">Digital offer (course, program, mastermind)</button>
+        </div>
+        <div class="fields">
+          <div class="field"><label for="c-aov" id="c-aov-label">AOV (average order value)</label><div class="money"><input id="c-aov" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00"></div></div>
+          <div class="field" id="f-cogs"><label for="c-cogs">COGS per order</label><div class="money"><input id="c-cogs" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00"></div></div>
+          <div class="field" id="f-ship"><label for="c-ship">Shipping/fulfillment per order</label><div class="money"><input id="c-ship" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00"></div></div>
+          <div class="field"><label for="c-fees" id="c-fees-label">Fees + avg refunds per order</label><div class="money"><input id="c-fees" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00"></div></div>
+        </div>
+        <div class="card-white outputs" aria-live="polite">
+          <div><span class="out-label">Breakeven CPA</span><span class="out-value display" id="o-cpa">—</span></div>
+          <div><span class="out-label">Breakeven ROAS</span><span class="out-value display" id="o-roas">—</span></div>
+        </div>
+        <p class="notice" id="o-error" role="alert" hidden>You lose money on every first order at this price. Fix margin before running ads.</p>
+        <p class="fine">If customers buy again, first-order breakeven is a floor, not a ceiling.</p>
+      </div>
+    </article>
+
+    <!-- Step 2 -->
+    <article class="card step" id="step-2">
+      <div class="step-head"><span class="step-num" aria-hidden="true">2</span><h2>Establish your starting budget</h2></div>
+      <p>Meta recommends roughly <strong>50 optimization events per week per ad set</strong> to exit the learning phase and stabilize delivery. Many advertisers still get solid results below that, especially on smaller budgets.</p>
+      <p class="formula">(Breakeven CPA × 50) ÷ 7 <span>=</span> Starting daily budget</p>
+
+      <div class="tool">
+        <span class="cap-label">Starting budget calculator</span>
+        <div class="fields">
+          <div class="field"><label for="c-cpa">Your breakeven CPA</label><div class="money"><input id="c-cpa" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00"></div></div>
+          <div class="field"><label for="c-can">What can you spend per day? <span>(optional)</span></label><div class="money"><input id="c-can" type="number" inputmode="decimal" min="0" step="1" placeholder="0"></div></div>
+        </div>
+        <p class="fine" id="o-budget-hint">Type your breakeven CPA, or fill in Step 1 and it carries over.</p>
+        <div class="card-white outputs three" aria-live="polite">
+          <div><span class="out-label">Starting daily budget</span><span class="out-value display" id="o-daily">—</span></div>
+          <div><span class="out-label">Per week</span><span class="out-value small display" id="o-weekly">—</span></div>
+          <div><span class="out-label">Per 30 days</span><span class="out-value small display" id="o-monthly">—</span></div>
+        </div>
+        <!-- TODO (JT): confirm the wording of this message. -->
+        <p class="notice" id="o-under" hidden>You likely won't hit 50 conversions a week at this budget. That's okay. Start anyway, keep creative fresh, and judge results over 7–14 days, not day to day.</p>
+      </div>
+    </article>
+
+    <!-- Step 3 -->
+    <article class="card step" id="step-3">
+      <div class="step-head"><span class="step-num" aria-hidden="true">3</span><h2>Set up conversion tracking</h2></div>
+      <ol class="caps">
+        <li><span class="n">1</span><span><span class="t">Meta Pixel</span><span class="d">Tracks ad conversions on your site so Meta can optimize targeting.</span><span class="l"><a href="https://www.facebook.com/business/help/952192354843755" target="_blank" rel="noopener">Meta's setup guide &rarr;</a> <a href="https://developers.facebook.com/documentation/meta-pixel/get-started" target="_blank" rel="noopener">Developer docs &rarr;</a></span></span></li>
+        <li><span class="n">2</span><span><span class="t">Conversions API (CAPI)</span><span class="d">Server-side tracking that catches conversions the pixel misses.</span><span class="l"><a href="https://www.facebook.com/business/tools/conversions-api" target="_blank" rel="noopener">Meta's overview &rarr;</a> <a href="https://developers.facebook.com/documentation/ads-commerce/conversions-api" target="_blank" rel="noopener">Developer docs &rarr;</a></span></span></li>
+        <li><span class="n">3</span><span><span class="t">Third-party attribution</span><span class="d">Hyros, RedTrack, etc. Sanity-check platform numbers against real revenue.</span><span class="l"><a href="https://hyros.com/" target="_blank" rel="noopener">Hyros &rarr;</a> <a href="https://www.redtrack.io/" target="_blank" rel="noopener">RedTrack &rarr;</a></span></span></li>
+      </ol>
+      <figure class="card-white shot" hidden style="margin-left:0;margin-right:0"><img src="/img/step3.png" alt="Tracking setup screenshot" onload="this.parentNode.hidden=false"></figure>
+      <div class="tool">
+        <span class="cap-label">Your tracking checklist</span>
+        <div class="checks" id="track-checks">
+          <label><input type="checkbox" data-check="pixel"><span>Pixel installed</span></label>
+          <label><input type="checkbox" data-check="capi"><span>CAPI connected</span></label>
+          <label><input type="checkbox" data-check="purchase"><span>Purchase event firing</span></label>
+          <label><input type="checkbox" data-check="third_party"><span>Third-party tool <i>(optional)</i></span></label>
+        </div>
+      </div>
+    </article>
+
+    <!-- Step 4 -->
+    <article class="card step" id="step-4">
+      <div class="step-head"><span class="step-num" aria-hidden="true">4</span><h2>Prepare creative + targeting</h2></div>
+      <h3 class="sub-h">Targeting</h3>
+      <p>Upload a customer list to create a lookalike audience. Or go broad and let creative do the targeting.</p>
+      <h3 class="sub-h">Creative</h3>
+      <p><strong>3–5 new creatives per week, minimum.</strong></p>
+      <h3 class="sub-h">Best content sources</h3>
+      <ul class="pills">
+        <li>Founder-led (you)</li>
+        <li>In-house creator</li>
+        <li>UGC from other creators</li>
+      </ul>
+      <figure class="card-white shot" hidden style="margin-left:0;margin-right:0"><img src="/img/step4.png" alt="Creative and targeting screenshot" onload="this.parentNode.hidden=false"></figure>
+      <p>Creative volume is where most brands stall, and it's exactly what my <a href="/">Ads + Creative Engine</a> handles.</p>
+    </article>
+
+    <!-- Step 5 -->
+    <article class="card step" id="step-5">
+      <div class="step-head"><span class="step-num" aria-hidden="true">5</span><h2>Set up in Campaign Manager</h2></div>
+      <ol class="card-white cm">
+        <li><span class="n">1</span><span><span class="k">Objective</span><span class="v">Sales <em>(almost always)</em></span></span></li>
+        <li><span class="n">2</span><span><span class="k">Conversion location · Performance goal</span><span class="v">Website · Maximize number of conversions</span></span></li>
+        <li><span class="n">3</span><span><span class="k">Dataset · Conversion event</span><span class="v">Your Pixel/CAPI dataset · Purchase <em>(or your lead/booking event for lead-gen offers)</em></span></span></li>
+        <li><span class="n">4</span><span><span class="k">Daily budget</span><span class="v" id="cm-budget">Use the number from Step 2</span></span></li>
+        <li><span class="n">5</span><span><span class="k">Audience</span><span class="v">Lookalike or broad <em>(from Step 4)</em></span></span></li>
+        <li><span class="n">6</span><span><span class="k">Ad</span><span class="v">Primary text, headline, description, CTA, creative</span></span></li>
+        <li><span class="n">7</span><span><span class="k">Destination</span><span class="v">URL with UTM parameters <em>so you can see which ads drive revenue</em></span></span></li>
+      </ol>
+      <figure class="card-white shot" hidden style="margin-left:0;margin-right:0"><img src="/img/step5.png" alt="Campaign Manager screenshot" onload="this.parentNode.hidden=false"></figure>
+
+      <div class="tool">
+        <span class="cap-label">UTM builder</span>
+        <div class="fields">
+          <div class="field" style="grid-column:1/-1"><label for="u-base">Destination URL</label><input id="u-base" type="text" inputmode="url" autocapitalize="none" autocomplete="off" placeholder="yourbrand.com/product"></div>
+          <div class="field"><label for="u-campaign">Campaign</label><input id="u-campaign" type="text" autocapitalize="none" autocomplete="off" placeholder="spring-launch"></div>
+          <div class="field"><label for="u-ad">Ad name</label><input id="u-ad" type="text" autocapitalize="none" autocomplete="off" placeholder="founder-video-1"></div>
+        </div>
+        <div class="utm-out">
+          <output id="u-out" class="empty" for="u-base u-campaign u-ad">Your tagged URL shows up here.</output>
+          <button type="button" class="btn" id="u-copy" disabled>Copy</button>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- 4. Opt-in -->
+<section class="band center" id="breakdown">
+  <div class="wrap">
+    <div id="optin-form-block">
+      <p class="eyebrow">Coming soon</p>
+      <h2>Want the full system?</h2>
+      <p class="lede">I'm building a program to walk you through every step in depth and provide support as you grow your account. Join the waitlist for early-access.</p>
+      <form class="optin" id="optin" novalidate>
+        <p class="form-error" id="g-error" role="alert" hidden></p>
+        <button class="btn" type="submit" id="g-submit">Join the waitlist</button>
+        <p class="form-note center-note">No spam. One email when it opens.</p>
+      </form>
+    </div>
+    <div id="optin-done" hidden>
+      <h2 tabindex="-1" id="optin-done-h">You're on the list.</h2>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Closing CTA -->
+<section class="center closing">
+  <div class="wrap">
+    <div class="cta-card">
+      <p class="eyebrow">When the basics are working</p>
+      <h2>Ready to scale past the basics? Let's talk.</h2>
+      <ul class="cta-points">
+        <li>Fresh creative every week</li>
+        <li>Tracking you can trust</li>
+        <li>Someone running it all</li>
+      </ul>
+      <a class="btn btn-lg" href="/#book" data-book="closing">Book a strategy call</a>
+      <p class="cta-micro">30 minutes. You leave with a plan either way.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- 6. Footer -->
+<footer>
+  <div class="wrap">© 2026 BagOps LLC · Seattle, WA · <a href="mailto:jt@bagops.com">jt@bagops.com</a></div>
+</footer>
+
+<!-- Vercel Web Analytics -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+<script>
+(function () {
+  function track(name, data) { try { window.va("event", { name: name, data: data || {} }); } catch (e) {} }
+  var $ = function (id) { return document.getElementById(id); };
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var SESSION_RE = /^[A-Za-z0-9-]{8,64}$/;
+  var params = new URLSearchParams(location.search);
+
+  track("checklist_view");
+
+  // ---------- Optional video ----------
+  if (CONFIG.CHECKLIST_VIDEO_URL) {
+    var url = CONFIG.CHECKLIST_VIDEO_URL, m, src = url;
+    if ((m = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{6,})/))) src = "https://www.youtube.com/embed/" + m[1] + "?rel=0";
+    else if ((m = url.match(/loom\.com\/(?:share|embed)\/([\w-]+)/))) src = "https://www.loom.com/embed/" + m[1];
+    else if ((m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/))) src = "https://player.vimeo.com/video/" + m[1];
+    var f = document.createElement("iframe");
+    f.src = src; f.title = "5-step checklist to start running Meta ads"; f.loading = "lazy";
+    f.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media"; f.allowFullscreen = true;
+    $("video").appendChild(f); $("video").hidden = false;
+  }
+
+  // ---------- Calculator math ----------
+  /* Test cases (checked with Node and in the browser before shipping):
+     1. Physical: AOV 80, COGS 20, shipping 8, fees+refunds 4
+        -> CPA $48.00, ROAS 1.67x, daily $342.86, weekly $2,400.00, 30 days $10,285.71
+     2. Digital:  price 497, fees+refunds 30 (COGS and shipping ignored)
+        -> CPA $467.00, ROAS 1.06x, daily $3,335.71, weekly $23,350.00, 30 days $100,071.43
+     3. Physical: AOV 25, COGS 15, shipping 8, fees+refunds 3
+        -> CPA -$1.00 -> error state, no ROAS, no budget
+  */
+  function round2(n) { return Math.round((n + Number.EPSILON) * 100) / 100; }
+  function breakeven(price, cogs, ship, fees) {
+    var cpa = price - cogs - ship - fees;
+    return { cpa: round2(cpa), roas: cpa > 0 ? round2(price / cpa) : null };
+  }
+  function startingBudget(cpa) {
+    var daily = cpa * 50 / 7;
+    return { daily: round2(daily), weekly: round2(cpa * 50), monthly: round2(daily * 30) };
+  }
+  function money(n) { return (n < 0 ? "-$" : "$") + Math.abs(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+  function num(id) { var v = parseFloat($(id).value); return isFinite(v) && v > 0 ? v : 0; }
+
+  var digital = false, usedFired = false, budgetFired = false, cpaTyped = false;
+  function setMode(isDigital) {
+    digital = isDigital;
+    $("mode-physical").setAttribute("aria-pressed", String(!digital));
+    $("mode-digital").setAttribute("aria-pressed", String(digital));
+    $("f-cogs").hidden = digital;
+    $("f-ship").hidden = digital;
+    $("c-aov-label").textContent = digital ? "Price per sale" : "AOV (average order value)";
+    $("c-fees-label").textContent = digital ? "Payment fees + avg refunds/chargebacks per sale" : "Fees + avg refunds per order";
+    calc();
+  }
+  function calc() {
+    var price = num("c-aov");
+    var hasPrice = price > 0;
+    var r = breakeven(price, digital ? 0 : num("c-cogs"), digital ? 0 : num("c-ship"), num("c-fees"));
+    var ok = hasPrice && r.cpa > 0;
+    $("o-cpa").textContent = hasPrice ? money(r.cpa) : "—";
+    $("o-roas").textContent = ok ? r.roas.toFixed(2) + "x" : "—";
+    $("o-error").hidden = !(hasPrice && r.cpa <= 0);
+
+    // Step 2 runs on its own CPA field: carried over from Step 1 unless the visitor typed their own.
+    if (!cpaTyped) $("c-cpa").value = ok ? r.cpa.toFixed(2) : "";
+    var cpa = num("c-cpa");
+    var b = cpa > 0 ? startingBudget(cpa) : null;
+    $("o-daily").textContent = b ? money(b.daily) : "—";
+    $("o-weekly").textContent = b ? money(b.weekly) : "—";
+    $("o-monthly").textContent = b ? money(b.monthly) : "—";
+    $("o-budget-hint").hidden = !!b;
+    $("cm-budget").textContent = b ? money(b.daily) + " a day (from Step 2)" : "Use the number from Step 2";
+    var can = num("c-can");
+    $("o-under").hidden = !(b && can > 0 && b.daily > can);
+    if (b && usedFired && !budgetFired) { budgetFired = true; track("budget_calculated"); }
+  }
+  ["c-aov", "c-cogs", "c-ship", "c-fees", "c-can", "c-cpa"].forEach(function (id) {
+    $(id).addEventListener("input", function () {
+      if (id === "c-cpa") cpaTyped = $("c-cpa").value.trim() !== "";
+      if (!usedFired) { usedFired = true; track("calculator_used"); }
+      calc();
+    });
+  });
+  $("mode-physical").addEventListener("click", function () { setMode(false); });
+  $("mode-digital").addEventListener("click", function () { setMode(true); });
+  calc();
+
+  // ---------- Tracking checklist (saved on this device) ----------
+  var CHECK_KEY = "bagops_checklist_tracking";
+  var boxes = document.querySelectorAll("#track-checks input");
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(CHECK_KEY)) || {}; } catch (e) { saved = {}; }
+  [].forEach.call(boxes, function (box) {
+    box.checked = !!saved[box.getAttribute("data-check")];
+    box.addEventListener("change", function () {
+      saved[box.getAttribute("data-check")] = box.checked;
+      try { localStorage.setItem(CHECK_KEY, JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+
+  // ---------- UTM builder ----------
+  var utmUrl = "";
+  function buildUtm() {
+    var base = $("u-base").value.trim();
+    utmUrl = "";
+    if (base) {
+      if (!/^https?:\/\//i.test(base)) base = "https://" + base;
+      var hash = "", i = base.indexOf("#");
+      if (i > -1) { hash = base.slice(i); base = base.slice(0, i); }
+      var parts = ["utm_source=facebook", "utm_medium=paid_social"];
+      var campaign = $("u-campaign").value.trim(), ad = $("u-ad").value.trim();
+      if (campaign) parts.push("utm_campaign=" + encodeURIComponent(campaign));
+      if (ad) parts.push("utm_content=" + encodeURIComponent(ad));
+      utmUrl = base + (base.indexOf("?") > -1 ? "&" : "?") + parts.join("&") + hash;
+    }
+    $("u-out").textContent = utmUrl || "Your tagged URL shows up here.";
+    $("u-out").className = utmUrl ? "" : "empty";
+    $("u-copy").disabled = !utmUrl;
+  }
+  ["u-base", "u-campaign", "u-ad"].forEach(function (id) { $(id).addEventListener("input", buildUtm); });
+  $("u-copy").addEventListener("click", function () {
+    if (!utmUrl) return;
+    var done = function () {
+      track("utm_copied");
+      $("u-copy").textContent = "Copied";
+      setTimeout(function () { $("u-copy").textContent = "Copy"; }, 1800);
+    };
+    var fallback = function () {
+      var t = document.createElement("textarea");
+      t.value = utmUrl; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.opacity = "0";
+      document.body.appendChild(t); t.select();
+      try { document.execCommand("copy"); done(); } catch (e) {}
+      document.body.removeChild(t);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(utmUrl).then(done, fallback);
+    else fallback();
+  });
+
+  // ---------- Lead tracking, email gate and waitlist ----------
+  function post(body) {
+    return fetch("/api/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), keepalive: true });
+  }
+
+  // What we remember about this visitor on this device (survives a return visit).
+  var GUIDE_KEY = "bagops_guide";
+  var guide = null;
+  try { guide = JSON.parse(localStorage.getItem(GUIDE_KEY)); } catch (e) {}
+  if (!guide || !guide.session_id) {
+    guide = {
+      session_id: (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : "g-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 12),
+      utm: { source: params.get("utm_source") || "", medium: params.get("utm_medium") || "", campaign: params.get("utm_campaign") || "", content: params.get("utm_content") || "" },
+      referrer: document.referrer || "",
+      unlocked: false,   // left an email at the gate
+      waitlisted: false
+    };
+  }
+  function remember() { try { localStorage.setItem(GUIDE_KEY, JSON.stringify(guide)); } catch (e) {} }
+
+  // The session id the lead is filed under in Notion: the form's (?sid=) or the gate's.
+  var sid = params.get("sid") || "";
+  var leadSession = guide.unlocked ? guide.session_id : "";
+
+  function showGate() {
+    $("gate").hidden = false;
+    document.body.classList.add("is-gated");
+    $("content").setAttribute("inert", "");
+    $("gate-name").focus();
+  }
+  function hideGate() {
+    $("gate").hidden = true;
+    document.body.classList.remove("is-gated");
+    $("content").removeAttribute("inert");
+  }
+
+  if (guide.unlocked) {
+    // Returning visitor who already left an email: straight in.
+  } else if (SESSION_RE.test(sid)) {
+    // Came from the qualifying form: mark the lead as having viewed the guide.
+    // If that id is not a lead we know, treat them as a direct visitor.
+    leadSession = sid;
+    post({ session_id: sid, event: "guide_view" })
+      .then(function (res) { return res.json(); })
+      .then(function (out) { if (out && out.known === false) { leadSession = ""; showGate(); } })
+      .catch(function () {});
+  } else {
+    showGate();
+  }
+
+  $("gate-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = $("gate-name").value.trim(), email = $("gate-email").value.trim().toLowerCase();
+    var err = $("gate-error"), msg = "";
+    if (!name) msg = "Add your first name.";
+    else if (!EMAIL_RE.test(email)) msg = "Enter a valid email address.";
+    if (msg) { err.textContent = msg; err.hidden = false; (name ? $("gate-email") : $("gate-name")).focus(); return; }
+    err.hidden = true;
+    $("gate-submit").disabled = true;
+    post({
+      session_id: guide.session_id, source: "checklist", first_name: name, email: email,
+      utm_source: guide.utm.source, utm_medium: guide.utm.medium, utm_campaign: guide.utm.campaign, utm_content: guide.utm.content,
+      referrer: guide.referrer, company: $("gate-company").value
+    }).then(function (res) {
+      if (!res.ok) throw new Error("save failed");
+      track("checklist_optin");
+      guide.unlocked = true; remember();
+      leadSession = guide.session_id;
+      hideGate();
+    }).catch(function () {
+      $("gate-submit").disabled = false;
+      err.textContent = "That didn't go through. Try again, or email jt@bagops.com.";
+      err.hidden = false;
+    });
+  });
+
+  // Waitlist: one click, the lead is already on file.
+  if (guide.waitlisted) { $("optin-form-block").hidden = true; $("optin-done").hidden = false; }
+  $("optin").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var err = $("g-error");
+    if (!leadSession) { showGate(); return; }
+    err.hidden = true;
+    $("g-submit").disabled = true;
+    post({ session_id: leadSession, event: "waitlist_join" }).then(function (res) {
+      if (!res.ok) throw new Error("save failed");
+      track("checklist_waitlist");
+      guide.waitlisted = true; remember();
+      $("optin-form-block").hidden = true;
+      $("optin-done").hidden = false;
+      $("optin-done-h").focus();
+    }).catch(function () {
+      $("g-submit").disabled = false;
+      err.textContent = "That didn't go through. Try again, or email jt@bagops.com.";
+      err.hidden = false;
+    });
+  });
+
+  // Book clicks
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest ? e.target.closest("[data-book]") : null;
+    if (el) track("checklist_book_click", { location: el.getAttribute("data-book") });
+  });
+})();
+</script>
+</body>
+</html>

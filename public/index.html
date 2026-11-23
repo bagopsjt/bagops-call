@@ -1,0 +1,913 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ============================================================
+     DESIGN TOKENS: every color and font lives here.
+     ============================================================ -->
+<style>
+:root {
+  /* Colors */
+  --bg: #121110;            /* warm near-black */
+  --bg-raised: #1b1917;     /* dark cards */
+  --bg-sunken: #0d0c0b;     /* alternating bands */
+  --line: #2e2a26;          /* borders on dark */
+  --text: #f4efe8;          /* off-white */
+  --text-muted: #b3aaa0;    /* secondary text on dark */
+  --accent: #f27a2e;        /* orange */
+  --accent-hover: #ff8f47;
+  --on-accent: #121110;     /* text on orange */
+  --lamp: rgba(242, 122, 46, 0.10); /* warm lamp glow in the hero */
+
+  /* "White UI card on dark" moments */
+  --card-white: #ffffff;
+  --card-white-text: #1a1816;
+  --card-white-muted: #5c554e;
+  --card-white-line: #e6e1da;
+  --accent-ink: #a84a0c;    /* orange that passes contrast on white */
+
+  /* Fonts */
+  --font-display: "Poppins", system-ui, sans-serif;
+  --font-display-weight: 800;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+</style>
+
+<!-- ============================================================
+     CONFIG: the only values you need to edit.
+     Leave any of them "" and the page hides that block or falls back.
+     ============================================================ -->
+<script>
+var CONFIG = {
+  VSL_EMBED_URL: "",  // YouTube, Loom or Vimeo link for the hero video
+  BOOKING_URL: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0vlElc1RCGNWbkZ8VCjaxjmDjsQzKJv_YDf7wnUybpHpFh_vYkVvb5s6HnDcSfGvTFk4UWqESd",    // Google Calendar appointment schedule link
+  GUIDE_URL: "/meta-checklist" // free guide link, offered to leads under $5k/mo ad spend
+};
+</script>
+
+<title>BagOps | Meta ads + creative for ecommerce, education &amp; membership brands</title>
+<meta name="description" content="We run your Meta ads and manage your creative pipeline. Fresh, on-brand ads every week, and tracking that shows which ones make money.">
+<meta name="theme-color" content="#121110">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BagOps">
+<meta property="og:title" content="Your Meta ads can only scale as fast as your creative. Let's fix both.">
+<meta property="og:description" content="Meta ads management with an in-house creator creative engine and tracking you can trust. Book a free 30-minute strategy call.">
+<meta property="og:image" content="https://call.bagops.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your Meta ads can only scale as fast as your creative. Let's fix both.">
+<meta name="twitter:description" content="Meta ads management with an in-house creator creative engine and tracking you can trust.">
+<meta name="twitter:image" content="https://call.bagops.com/og.png">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23121110'/%3E%3Ctext x='32' y='46' font-family='Arial,Helvetica,sans-serif' font-size='40' font-weight='800' text-anchor='middle' fill='%23F27A2E'%3EB%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@800&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3, p, ul, ol { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(2rem, 4.6vw, 3.4rem); }
+h2 { font-size: clamp(1.6rem, 3.2vw, 2.3rem); }
+h3 { font-size: 1.12rem; line-height: 1.25; letter-spacing: -0.015em; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+[hidden] { display: none !important; }
+
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+section { padding: 72px 0; scroll-margin-top: 72px; }
+.band { background: var(--bg-sunken); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.eyebrow {
+  font-size: 0.76rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+}
+.section-head { max-width: 680px; margin-bottom: 36px; }
+.icon { width: 24px; height: 24px; flex: none; fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: 12px 24px;
+  background: var(--accent); color: var(--on-accent);
+  font-family: var(--font-body); font-weight: 600; font-size: 1rem;
+  text-decoration: none; border: 0; border-radius: 10px; cursor: pointer;
+  transition: background 0.15s ease;
+}
+.btn:hover { background: var(--accent-hover); }
+.btn-lg { min-height: 56px; padding: 16px 30px; font-size: 1.08rem; }
+.btn-sm { min-height: 44px; padding: 10px 18px; font-size: 0.95rem; }
+
+/* Header */
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(18, 17, 16, 0.92); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.wordmark { font-family: var(--font-display); font-weight: var(--font-display-weight); font-size: 1.3rem; letter-spacing: -0.02em; text-decoration: none; }
+.wordmark span { color: var(--accent); }
+
+/* Hero */
+.hero { padding: 64px 0; background: radial-gradient(900px 480px at 85% -10%, var(--lamp), transparent 70%); }
+.hero-grid { display: grid; grid-template-columns: 1.3fr 0.9fr; gap: 48px; align-items: center; }
+.hero-grid.has-vsl { grid-template-columns: 1fr; }
+.hero .sub { max-width: 32em; margin-top: 20px; font-size: 1.12rem; color: var(--text-muted); }
+.hero-cta { margin-top: 30px; }
+.micro { margin-top: 12px; font-size: 0.9rem; color: var(--text-muted); }
+.vsl { margin-top: 32px; max-width: 860px; aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--bg-sunken); }
+.vsl iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+/* Hero visual: three ad creatives moving through testing */
+.reels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: end; }
+.reel {
+  position: relative; aspect-ratio: 9 / 16; border-radius: 14px; overflow: hidden;
+  background: radial-gradient(120% 60% at 70% 0%, var(--lamp), transparent 70%), var(--bg-raised);
+  border: 1px solid var(--line);
+  display: flex; flex-direction: column; justify-content: space-between; padding: 10px;
+}
+.reel-img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.reel-img + .chip, .reel .play, .reel .cap { position: relative; z-index: 1; }
+.reel-img ~ .play { display: none; }
+/* Use on a tile whose clip has a face at the top: the chip drops down beside the caption. */
+.reel.has-media { justify-content: flex-end; gap: 8px; }
+.reel.has-media .chip { align-self: center; }
+.reel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(18,17,16,0.35) 0%, rgba(18,17,16,0) 28%, rgba(18,17,16,0) 55%, rgba(18,17,16,0.85) 100%); pointer-events: none; }
+.reel.is-old .reel-img { filter: grayscale(0.8); }
+.reel.is-win { border: 2px solid var(--accent); transform: translateY(-14px); }
+.reel.is-old { opacity: 0.55; }
+.chip { align-self: flex-start; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--text-muted); background: var(--bg); }
+.is-win .chip { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.reel .play { width: 34px; height: 34px; margin: 0 auto; fill: var(--text); opacity: 0.85; }
+.reel .cap { font-family: var(--font-display); font-weight: var(--font-display-weight); font-size: 0.72rem; line-height: 1.15; text-transform: uppercase; text-align: center; color: var(--text); }
+.reels-note { grid-column: 1 / -1; margin-top: 4px; text-align: center; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+
+/* Proof bar */
+.proof { padding: 0; }
+.proof ul { display: grid; grid-template-columns: repeat(4, 1fr); }
+.proof li { padding: 28px 20px; border-left: 1px solid var(--line); }
+.proof li:first-child { border-left: 0; padding-left: 0; }
+.proof .num { font-size: clamp(1.6rem, 3vw, 2.2rem); display: block; white-space: nowrap; }
+.proof .lbl { display: block; margin-top: 6px; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); line-height: 1.4; }
+
+/* Cards */
+.grid { display: grid; gap: 16px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.card { background: var(--bg-raised); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+.card p { color: var(--text-muted); }
+.card .tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+.ticks li { position: relative; padding-left: 22px; margin-top: 8px; color: var(--text-muted); }
+.ticks li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 10px; height: 2px; background: var(--accent); }
+
+.card-white { background: var(--card-white); border-color: var(--card-white); color: var(--card-white-text); }
+.card-white p { color: var(--card-white-muted); }
+.card-white .tag { color: var(--accent-ink); }
+
+/* Pain points */
+.pain { display: flex; gap: 14px; align-items: flex-start; }
+.pain h3 { margin-bottom: 4px; }
+
+/* Engine */
+.pillar .icon { width: 28px; height: 28px; margin-bottom: 14px; }
+.pillar h3 { margin-bottom: 6px; }
+.addon { margin-top: 16px; background: transparent; border-style: dashed; display: grid; grid-template-columns: 1fr 1.1fr; gap: 28px; align-items: center; }
+.addon-label { display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; margin-bottom: 12px; }
+.addon .ticks li:first-child { margin-top: 0; }
+
+/* Results */
+.result .rows { display: grid; gap: 12px; margin-bottom: 18px; }
+.result .row-top { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
+.result .row-top span:first-child { color: var(--card-white-muted); font-weight: 500; }
+.bar { height: 10px; border-radius: 999px; background: var(--card-white-line); }
+.bar.rev { background: var(--accent); }
+.result .big { font-size: 2rem; display: block; }
+.result .big-sub { font-size: 0.9rem; margin-top: 2px; }
+.stack .big { font-size: 1.5rem; display: block; margin-bottom: 14px; color: var(--text); }
+
+/* Steps */
+.steps { counter-reset: step; }
+.steps li { counter-increment: step; }
+.steps li::before { content: counter(step); display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-family: var(--font-display); font-weight: var(--font-display-weight); margin-bottom: 14px; }
+.steps h3 { margin-bottom: 6px; }
+
+/* Fit */
+.fit h3 { margin-bottom: 12px; }
+.fit li { position: relative; padding-left: 28px; margin-top: 10px; }
+.fit li::before { position: absolute; left: 0; top: 0; font-weight: 700; }
+.fit-yes li::before { content: "\2713"; color: var(--accent); }
+.fit-no li { color: var(--text-muted); }
+.fit-no li::before { content: "\2715"; color: var(--text-muted); }
+
+/* Investment */
+.invest { grid-template-columns: 1.1fr 1fr; align-items: stretch; }
+.price-pre { font-size: 0.95rem; color: var(--text-muted); }
+.price { font-size: clamp(2.2rem, 5vw, 3rem); display: block; margin: 2px 0 12px; color: var(--text); }
+.addon-line { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 0.95rem; }
+.bio-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.avatar { width: 68px; height: 68px; border-radius: 50%; overflow: hidden; flex: none; background: var(--accent); color: var(--on-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: var(--font-display-weight); font-size: 1.4rem; }
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+.bio-name { font-family: var(--font-display); font-weight: var(--font-display-weight); font-size: 1.15rem; color: var(--text) !important; }
+.bio-role { font-size: 0.9rem; }
+.bio-quote { margin-top: 14px; color: var(--text) !important; font-weight: 600; }
+
+/* FAQ */
+.faq-wrap { max-width: 800px; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq details:first-of-type { border-top: 1px solid var(--line); }
+.faq summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; font-weight: 600; min-height: 56px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; width: 24px; text-align: center; font-size: 1.5rem; line-height: 1; font-weight: 400; color: var(--accent); }
+.faq details[open] summary::after { content: "\2212"; }
+.faq details p { padding: 0 40px 20px 0; color: var(--text-muted); }
+
+/* Booking */
+.book-wrap { max-width: 720px; }
+.book-wrap .section-head { text-align: center; margin-left: auto; margin-right: auto; }
+.calendar { background: var(--card-white); border-radius: 14px; overflow: hidden; }
+.calendar iframe { width: 100%; height: 720px; border: 0; display: block; }
+.book-fallback p { margin-bottom: 16px; }
+
+/* Qualifying form */
+.lead-form { padding: 28px; }
+.lf-top { display: flex; align-items: center; justify-content: space-between; min-height: 32px; margin-bottom: 10px; }
+.lf-count { margin-left: auto; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+.lf-back { background: none; border: 0; color: var(--text-muted); font: inherit; font-size: 0.92rem; cursor: pointer; padding: 6px 10px 6px 0; min-height: 32px; }
+.lf-back:hover { color: var(--text); }
+.lf-progress { height: 6px; border-radius: 999px; background: var(--line); overflow: hidden; margin-bottom: 26px; }
+.lf-progress span { display: block; height: 100%; width: 20%; background: var(--accent); border-radius: 999px; transition: width 0.25s ease; }
+.lf-step h3 { font-size: 1.4rem; margin-bottom: 18px; }
+.lf-step h3:focus { outline: none; }
+.lf-options { display: grid; gap: 10px; }
+.lf-opt { min-height: 54px; padding: 14px 18px; text-align: left; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 10px; font: inherit; font-weight: 500; cursor: pointer; transition: border-color 0.15s ease; }
+.lf-opt:hover, .lf-opt[aria-pressed="true"] { border-color: var(--accent); }
+.lf-step label { display: block; font-size: 0.9rem; font-weight: 600; margin: 14px 0 6px; }
+.lf-step label span { font-weight: 400; color: var(--text-muted); }
+.lf-step input { width: 100%; min-height: 52px; padding: 12px 14px; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 10px; font: inherit; font-size: 16px; }
+.lf-step input:focus { outline: none; border-color: var(--accent); }
+.lf-step input::placeholder { color: var(--text-muted); opacity: 0.7; }
+.lf-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.lf-next { margin-top: 20px; min-width: 160px; }
+.lf-note { margin-top: 12px; font-size: 0.86rem; }
+.lf-error { margin-top: 12px; color: var(--accent) !important; font-size: 0.92rem; font-weight: 600; }
+.lf-link { display: block; margin-top: 14px; background: none; border: 0; padding: 10px 0; min-height: 44px; color: var(--text-muted); font: inherit; font-size: 0.95rem; text-decoration: underline; cursor: pointer; }
+.lf-link:hover { color: var(--text); }
+#lf-qualified h3, #lf-early h3 { margin-bottom: 0; }
+#lf-early .lf-next { margin-top: 18px; }
+.calendar, .book-fallback { margin-top: 16px; }
+
+/* Footer */
+footer { padding: 28px 0 44px; border-top: 1px solid var(--line); font-size: 0.88rem; color: var(--text-muted); }
+
+@media (max-width: 860px) {
+  section { padding: 48px 0; }
+  .hero { padding: 40px 0 44px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+  .reels { max-width: 420px; }
+  .grid-3, .invest, .addon { grid-template-columns: 1fr; }
+  .addon { gap: 14px; }
+  .proof ul { grid-template-columns: repeat(2, 1fr); }
+  .proof li { padding: 20px 16px; }
+  .proof li:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .proof li:nth-child(n+3) { border-top: 1px solid var(--line); }
+  /* Steps and pillars become compact rows */
+  .steps li, .pillar { display: grid; grid-template-columns: 36px 1fr; column-gap: 14px; align-items: start; }
+  .steps li::before, .pillar .icon { grid-row: 1 / span 2; margin: 0; }
+  .steps li > *, .pillar > :not(.icon) { grid-column: 2; }
+}
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .section-head { margin-bottom: 26px; }
+  .grid { gap: 12px; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .card { padding: 18px; }
+  .hero .btn-lg { width: 100%; }
+  .lead-form { padding: 20px; }
+  .lf-step h3 { font-size: 1.25rem; }
+  .lf-next { width: 100%; }
+  .micro { text-align: center; }
+  .calendar iframe { height: 640px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-down" viewBox="0 0 24 24"><polyline points="3 7 9 13 13 9 21 17"/><polyline points="15 17 21 17 21 11"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></symbol>
+  <symbol id="i-neq" viewBox="0 0 24 24"><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="16" y1="5" x2="8" y2="19"/></symbol>
+  <symbol id="i-once" viewBox="0 0 24 24"><path d="M4 11a8 8 0 0 1 14-4l2 2"/><polyline points="20 4 20 9 15 9"/><path d="M20 13a8 8 0 0 1-14 4l-2-2"/><polyline points="4 20 4 15 9 15"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"/><polygon points="10.5 9 14.5 12 10.5 15"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><polyline points="8.5 12 11 14.5 15.5 10"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><polygon points="8 5 19 12 8 19"/></symbol>
+</svg>
+
+<!-- 1. Header -->
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="#top" aria-label="BagOps home">Bag<span>Ops</span></a>
+    <a class="btn btn-sm" href="#book" data-book="header">Book a call</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- 2. Hero -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid" id="hero-grid">
+      <div>
+        <p class="eyebrow">Meta ads + creative for ecommerce, digital education &amp; membership brands</p>
+        <h1>Your Meta ads can only scale as fast as your creative. Let's fix both.</h1>
+        <p class="sub">We run your Meta ads and manage your creative pipeline. Fresh, on-brand ads every week, and tracking that shows which ones make money.</p>
+        <div class="vsl" id="vsl" hidden></div>
+        <div class="hero-cta">
+          <a class="btn btn-lg" href="#book" data-book="hero">Start Scaling Today</a>
+          <p class="micro">30 minutes. You leave with a plan either way.</p>
+        </div>
+      </div>
+      <div class="reels" id="reels" aria-hidden="true">
+        <div class="reel is-old"><img class="reel-img" src="img/hero2.jpg" alt="" onerror="this.remove()"><span class="chip">Fatigued</span><svg class="play"><use href="#i-play"/></svg><span class="cap">Last month's winner</span></div>
+        <div class="reel is-win"><img class="reel-img" src="img/hero1.jpg" alt="" onerror="this.remove()"><span class="chip">Winner</span><svg class="play"><use href="#i-play"/></svg><span class="cap">New creator hook</span></div>
+        <div class="reel has-media"><img class="reel-img" src="img/hero3.jpg" alt="" onerror="this.remove()"><span class="chip">Testing</span><svg class="play"><use href="#i-play"/></svg><span class="cap">Next batch</span></div>
+        <p class="reels-note">New creative in testing every week</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Proof bar -->
+<section class="proof band" aria-label="Results">
+  <div class="wrap">
+    <ul>
+      <li><span class="num display">$17.8M+</span><span class="lbl">Revenue from paid media</span></li>
+      <li><span class="num display">4.8x</span><span class="lbl">Average ROAS</span></li>
+      <li><span class="num display">7.7x</span><span class="lbl">ROI on a creator program</span></li>
+      <li><span class="num display">15–30</span><span class="lbl">New creatives a month, per account</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. Pain points -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Sound familiar?</p>
+      <h2>The bottleneck is creative, not media buying.</h2>
+    </div>
+    <div class="grid grid-2">
+      <div class="card pain"><svg class="icon"><use href="#i-down"/></svg><div><h3>Your winning ads are fatiguing</h3><p>And nobody is making the next batch.</p></div></div>
+      <div class="card pain"><svg class="icon"><use href="#i-clock"/></svg><div><h3>Creators are slow and off-brief</h3><p>Weeks of chasing for content you can't run.</p></div></div>
+      <div class="card pain"><svg class="icon"><use href="#i-neq"/></svg><div><h3>You don't trust the numbers</h3><p>Ads Manager and your bank account disagree.</p></div></div>
+      <div class="card pain"><svg class="icon"><use href="#i-once"/></svg><div><h3>Customers buy once, then go quiet</h3><p>You paid for them and nothing brings them back.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. The engine -->
+<section class="band">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The Ads + Creative Engine</p>
+      <h2>Ads, creative and tracking. One team.</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="card pillar">
+        <svg class="icon"><use href="#i-target"/></svg>
+        <h3>Meta ads</h3>
+        <p>Facebook and Instagram, structured for creative testing and steady scale. Reported weekly.</p>
+      </div>
+      <div class="card pillar">
+        <svg class="icon"><use href="#i-video"/></svg>
+        <h3>In-house UGC creative</h3>
+        <p>We source, brief, contract and revise. Creators are paid on performance.</p>
+      </div>
+      <div class="card pillar">
+        <svg class="icon"><use href="#i-shield"/></svg>
+        <h3>Tracking you can trust</h3>
+        <p>Server-side tracking and the Conversions API, so budget follows real revenue.</p>
+      </div>
+    </div>
+
+    <div class="card addon">
+      <div>
+        <span class="addon-label">Add-on: Retention Engine</span>
+        <h3>Once acquisition is working, keep the customers you paid for.</h3>
+      </div>
+      <ul class="ticks">
+        <li>Email + SMS flows: welcome, post-purchase, winback, repurchase</li>
+        <li>Loyalty, VIP tiers, and more...</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Case studies -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Case studies</p>
+      <h2>Money in, money out.</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="card card-white result">
+        <p class="tag">Digital education · Paid media</p>
+        <div class="rows">
+          <div><div class="row-top"><span>Ad spend (cross-platform)</span><span>$3.7M+</span></div><div class="bar" style="width:21%"></div></div>
+          <div><div class="row-top"><span>Revenue</span><span>$17.8M+</span></div><div class="bar rev"></div></div>
+        </div>
+        <span class="big display">4.8x ROAS</span>
+        <p class="big-sub">$4.80 back for every $1 in ads</p>
+      </div>
+      <div class="card card-white result">
+        <p class="tag">Digital education · Creator program</p>
+        <div class="rows">
+          <div><div class="row-top"><span>Program budget</span><span>$60K</span></div><div class="bar" style="width:13%"></div></div>
+          <div><div class="row-top"><span>Revenue</span><span>$462K</span></div><div class="bar rev"></div></div>
+        </div>
+        <span class="big display">7.7x ROI</span>
+        <p class="big-sub">In 6 months</p>
+      </div>
+      <div class="card stack">
+        <p class="tag">Repeat-purchase DTC · Full stack</p>
+        <span class="big display">Breakeven CAC on the first purchase</span>
+        <ul class="ticks">
+          <li>Server-side tracking rebuild</li>
+          <li>UGC creative suites</li>
+          <li>Email rebuild: nearly 10x lift in deliverability and opens</li>
+          <li>Multi-tier VIP loyalty program</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. How it works -->
+<section class="band">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">How it works</p>
+      <h2>Three steps.</h2>
+    </div>
+    <ol class="grid grid-3 steps">
+      <li class="card"><h3>Strategy call</h3><p>30 minutes on your ads, creative and numbers.</p></li>
+      <li class="card"><h3>Audit and plan</h3><p>A written plan: account structure, creative pipeline, tracking fixes.</p></li>
+      <li class="card"><h3>Launch the engine</h3><p>Creators briefed, tracking live, weekly testing and reporting.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 8. Fit -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Fit</p>
+      <h2>Who it's for.</h2>
+    </div>
+    <div class="grid grid-2 fit">
+      <div class="card fit-yes">
+        <h3>A good fit</h3>
+        <ul>
+          <li>Ecommerce with repeat buyers or subscriptions</li>
+          <li>Courses, digital education or masterminds with recurring revenue</li>
+          <li>Running Meta ads (or ready to) and short on creative</li>
+          <li>Want one accountable team, not three vendors</li>
+        </ul>
+      </div>
+      <div class="card fit-no">
+        <h3>Not a fit</h3>
+        <ul>
+          <li>Pre-revenue or no product-market fit</li>
+          <li>Shopping for the cheapest option</li>
+          <li>Not ready to invest in creative and ad spend</li>
+          <li>Looking for Google, TikTok or multi-platform management</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Investment + operator -->
+<section class="band">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Investment</p>
+      <h2>One offer. One team.</h2>
+    </div>
+    <div class="grid invest">
+      <div class="card">
+        <p class="tag">Ads + Creative Engine</p>
+        <span class="price-pre">Starting at</span>
+        <span class="price display">$5,000/mo</span>
+        <p>Retainer plus performance upside on revenue above your baseline. Ad spend separate.</p>
+        <p class="addon-line">Retention Engine (email + SMS) available as an add-on. Scoped on the call.</p>
+      </div>
+      <div class="card">
+        <p class="tag">Meet the founder</p>
+        <div class="bio-head">
+          <div class="avatar" aria-hidden="true"><img src="jt.jpg" alt="" onerror="this.parentNode.textContent='JT'"></div>
+          <div>
+            <p class="bio-name">JT Neely</p>
+            <p class="bio-role">Founder, BagOps · Seattle</p>
+          </div>
+        </div>
+        <p>Millions in ad spend managed. Creator programs and lifecycle systems built for consumer brands. AI-powered systems that let a small team ship like a big one.</p>
+        <p class="bio-quote">You talk to the people doing the work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. FAQ -->
+<section>
+  <div class="wrap faq-wrap">
+    <div class="section-head">
+      <h2>FAQ</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>We already have an agency.</summary>
+        <p>Most agencies run the account and wait on you for creative. If that's where you're stuck, that's the gap we fill. If it isn't, we'll tell you on the call.</p>
+      </details>
+      <details>
+        <summary>We tried UGC and it didn't convert.</summary>
+        <p>That's usually a brief and testing problem, not a creator problem. We handle both.</p>
+      </details>
+      <details>
+        <summary>Why Meta only?</summary>
+        <p>One platform, done deeply. Meta is where creative drives results, so it's where a creator engine pays off most.</p>
+      </details>
+      <details>
+        <summary>How much of my time does this take?</summary>
+        <p>A kickoff, account access and a weekly check-in. Briefs, creators, revisions and reporting are on us.</p>
+      </details>
+      <details>
+        <summary>What does it cost?</summary>
+        <p>Starting at $5,000/mo plus performance upside. The Retention Engine add-on is scoped on the call. Ad spend is separate.</p>
+      </details>
+      <!-- TODO: add a contract-terms FAQ (minimum term, notice period, cancellation) once JT confirms the terms. -->
+    </div>
+  </div>
+</section>
+
+<!-- 11. Booking -->
+<section class="band" id="book">
+  <div class="wrap book-wrap">
+    <div class="section-head">
+      <p class="eyebrow">Book a call</p>
+      <h2>Let's see if there's a fit.</h2>
+    </div>
+    <div class="book-box">
+      <div class="card lead-form" id="lead-form">
+        <div class="lf-top" id="lf-top">
+          <button type="button" class="lf-back" id="lf-back" hidden>&larr; Back</button>
+          <span class="lf-count" id="lf-count">Step 1 of 5</span>
+        </div>
+        <div class="lf-progress" id="lf-progress" role="progressbar" aria-label="Form progress" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1"><span id="lf-bar"></span></div>
+
+        <div class="lf-step" data-step="1">
+          <h3 tabindex="-1">What kind of business are you?</h3>
+          <div class="lf-options" data-field="business_type">
+            <button type="button" class="lf-opt" data-value="ecommerce">Ecommerce</button>
+            <button type="button" class="lf-opt" data-value="course">Course or digital education</button>
+            <button type="button" class="lf-opt" data-value="mastermind">Mastermind or membership</button>
+            <button type="button" class="lf-opt" data-value="other">Other</button>
+          </div>
+        </div>
+
+        <form class="lf-step" data-step="2" novalidate hidden>
+          <h3 tabindex="-1">Where should we send your plan?</h3>
+          <label for="lf-name">First name</label>
+          <input id="lf-name" name="first_name" type="text" autocomplete="given-name" maxlength="80" required>
+          <label for="lf-email">Email</label>
+          <input id="lf-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="200" required>
+          <!-- Honeypot: hidden from people, filled by bots. -->
+          <div class="lf-hp" aria-hidden="true"><label for="lf-company">Company</label><input id="lf-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
+          <p class="lf-error" id="lf-error" role="alert" hidden></p>
+          <button class="btn lf-next" type="submit">Next</button>
+          <p class="lf-note">Only used to follow up about your call.</p>
+        </form>
+
+        <div class="lf-step" data-step="3" hidden>
+          <h3 tabindex="-1">Monthly Meta ad spend?</h3>
+          <div class="lf-options" data-field="meta_spend">
+            <button type="button" class="lf-opt" data-value="none">Not running yet</button>
+            <button type="button" class="lf-opt" data-value="under_5k">Under $5k</button>
+            <button type="button" class="lf-opt" data-value="5k_20k">$5k–$20k</button>
+            <button type="button" class="lf-opt" data-value="20k_50k">$20k–$50k</button>
+            <button type="button" class="lf-opt" data-value="50k_plus">$50k+</button>
+          </div>
+        </div>
+
+        <div class="lf-step" data-step="4" hidden>
+          <h3 tabindex="-1">Biggest bottleneck right now?</h3>
+          <div class="lf-options" data-field="bottleneck">
+            <button type="button" class="lf-opt" data-value="creative">Creative volume</button>
+            <button type="button" class="lf-opt" data-value="performance">ROAS or performance</button>
+            <button type="button" class="lf-opt" data-value="tracking">Tracking I can trust</button>
+            <button type="button" class="lf-opt" data-value="repeat">Repeat purchases</button>
+          </div>
+        </div>
+
+        <form class="lf-step" data-step="5" novalidate hidden>
+          <h3 tabindex="-1">Last thing</h3>
+          <label for="lf-website">Website <span>(optional)</span></label>
+          <input id="lf-website" name="website" type="text" inputmode="url" autocomplete="url" maxlength="200" placeholder="yourbrand.com">
+          <label for="lf-instagram">Instagram handle <span>(optional)</span></label>
+          <input id="lf-instagram" name="instagram" type="text" autocapitalize="none" maxlength="60" placeholder="@yourbrand">
+          <button class="btn lf-next" type="submit">Continue</button>
+        </form>
+
+        <div class="lf-step" data-step="result" hidden>
+          <div id="lf-qualified" hidden>
+            <h3 tabindex="-1">Pick a time. We'll review your answers before we talk.</h3>
+          </div>
+          <div id="lf-early" hidden>
+            <h3 tabindex="-1">You might be a little early, and that's okay.</h3>
+            <a class="btn lf-next" id="lf-guide" target="_blank" rel="noopener" hidden>Get the free guide</a>
+            <button type="button" class="lf-link" id="lf-anyway">Book a call anyway</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="calendar" id="calendar" hidden></div>
+      <div class="card book-fallback" id="book-fallback" hidden>
+        <p>Email us and we'll send a few times that work.</p>
+        <a class="btn" href="mailto:jt@bagops.com?subject=Strategy%20call" data-book="booking-email">Email jt@bagops.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- 12. Footer -->
+<footer>
+  <div class="wrap">© 2026 BagOps LLC · Seattle, WA · <a href="mailto:jt@bagops.com">jt@bagops.com</a></div>
+</footer>
+
+<!-- Vercel Web Analytics -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+<script>
+(function () {
+  function track(name, data) { try { window.va("event", { name: name, data: data || {} }); } catch (e) {} }
+
+  // Turn a YouTube / Loom / Vimeo share link into an embeddable URL.
+  function embedUrl(url) {
+    var m;
+    if ((m = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{6,})/))) return "https://www.youtube.com/embed/" + m[1] + "?rel=0";
+    if ((m = url.match(/loom\.com\/(?:share|embed)\/([\w-]+)/))) return "https://www.loom.com/embed/" + m[1];
+    if ((m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/))) return "https://player.vimeo.com/video/" + m[1];
+    return url;
+  }
+  function iframe(src, title) {
+    var f = document.createElement("iframe");
+    f.src = src; f.title = title; f.loading = "lazy";
+    f.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
+    f.allowFullscreen = true;
+    return f;
+  }
+
+  // Hero video: when a URL is set it replaces the creative illustration.
+  if (CONFIG.VSL_EMBED_URL) {
+    var vsl = document.getElementById("vsl");
+    vsl.appendChild(iframe(embedUrl(CONFIG.VSL_EMBED_URL), "A short intro from JT"));
+    vsl.hidden = false;
+    document.getElementById("reels").hidden = true;
+    document.getElementById("hero-grid").classList.add("has-vsl");
+  }
+
+  // Calendar (or the email fallback) is only revealed by the form below.
+  var calendarBuilt = false;
+  function showCalendar(fire) {
+    if (CONFIG.BOOKING_URL) {
+      var cal = document.getElementById("calendar");
+      if (!calendarBuilt) {
+        var src = CONFIG.BOOKING_URL + (CONFIG.BOOKING_URL.indexOf("?") > -1 ? "&" : "?") + "gv=true";
+        cal.appendChild(iframe(src, "Pick a time for your strategy call"));
+        calendarBuilt = true;
+      }
+      cal.hidden = false;
+    } else {
+      document.getElementById("book-fallback").hidden = false;
+    }
+    if (fire) track("calendar_shown");
+  }
+
+  // ---------- Qualifying form with partial-completion capture ----------
+  var KEY = "bagops_lead";
+  var QUALIFIED_SPEND = { "5k_20k": 1, "20k_50k": 1, "50k_plus": 1 };
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var $ = function (id) { return document.getElementById(id); };
+  var form = $("lead-form");
+
+  function uuid() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return "s-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 12);
+  }
+
+  // One session object: id, UTMs and referrer are captured once; answers and step survive a reload in the same tab.
+  var state = null;
+  try { state = JSON.parse(sessionStorage.getItem(KEY)); } catch (e) {}
+  if (!state || !state.session_id) {
+    var q = new URLSearchParams(location.search);
+    state = {
+      session_id: uuid(),
+      utm: { source: q.get("utm_source") || "", medium: q.get("utm_medium") || "", campaign: q.get("utm_campaign") || "", content: q.get("utm_content") || "" },
+      referrer: document.referrer || "",
+      step: 1,        // screen to show: 1-5 or "result"
+      saved_step: 0,  // highest step completed with an email on file (2-5)
+      anyway: false,
+      answers: {}
+    };
+  }
+  function persist() { try { sessionStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  persist();
+
+  // ----- Saving to /api/lead: one request at a time, identical payloads skipped -----
+  var inflight = false, queued = false, lastSent = "";
+  function payload() {
+    var a = state.answers;
+    return JSON.stringify({
+      session_id: state.session_id, last_step: state.saved_step,
+      first_name: a.first_name || "", email: a.email || "",
+      business_type: a.business_type || "", meta_spend: a.meta_spend || "", bottleneck: a.bottleneck || "",
+      website: a.website || "", instagram: a.instagram || "",
+      utm_source: state.utm.source, utm_medium: state.utm.medium, utm_campaign: state.utm.campaign, utm_content: state.utm.content,
+      referrer: state.referrer,
+      company: $("lf-company").value
+    });
+  }
+  function canSave() { return state.saved_step >= 2 && EMAIL_RE.test(state.answers.email || ""); }
+  function save() {
+    if (!canSave()) return;
+    var body = payload();
+    if (body === lastSent) return;
+    if (inflight) { queued = true; return; }
+    inflight = true; lastSent = body;
+    fetch("/api/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: body, keepalive: true })
+      .catch(function () { lastSent = ""; })
+      .then(function () { inflight = false; if (queued) { queued = false; save(); } });
+  }
+  // If the tab closes with an unsent answer, send it on the way out.
+  window.addEventListener("pagehide", function () {
+    if (!canSave()) return;
+    var body = payload();
+    if (body === lastSent) return;
+    lastSent = body;
+    var sent = navigator.sendBeacon && navigator.sendBeacon("/api/lead", new Blob([body], { type: "application/json" }));
+    if (!sent) fetch("/api/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: body, keepalive: true }).catch(function () {});
+  });
+
+  // ----- Screens -----
+  function show(step, focus) {
+    var steps = form.querySelectorAll(".lf-step"), current = null;
+    for (var i = 0; i < steps.length; i++) {
+      var match = steps[i].getAttribute("data-step") === String(step);
+      steps[i].hidden = !match;
+      if (match) current = steps[i];
+    }
+    var isResult = step === "result", n = isResult ? 5 : step;
+    $("lf-top").hidden = isResult;
+    $("lf-progress").hidden = isResult;
+    $("lf-back").hidden = step === 1;
+    $("lf-count").textContent = "Step " + n + " of 5";
+    $("lf-progress").setAttribute("aria-valuenow", n);
+    $("lf-bar").style.width = (n / 5 * 100) + "%";
+    // Mark the option already chosen on this screen.
+    var opts = current.querySelectorAll(".lf-opt");
+    for (var j = 0; j < opts.length; j++) {
+      var field = opts[j].parentNode.getAttribute("data-field");
+      opts[j].setAttribute("aria-pressed", state.answers[field] === opts[j].getAttribute("data-value") ? "true" : "false");
+    }
+    state.step = step; persist();
+    if (isResult) renderResult(focus);
+    if (focus) {
+      var h = current.querySelector("h3:not([hidden])");
+      var visible = [].filter.call(current.querySelectorAll("h3"), function (el) { return el.offsetParent !== null; })[0] || h;
+      if (visible) visible.focus({ preventScroll: false });
+    }
+  }
+  function renderResult(fire) {
+    var qualified = !!QUALIFIED_SPEND[state.answers.meta_spend];
+    $("lf-qualified").hidden = !qualified;
+    $("lf-early").hidden = qualified;
+    if (qualified) { showCalendar(fire); return; }
+    if (CONFIG.GUIDE_URL) {
+      // The session id ties the guide visit back to this lead in Notion.
+      $("lf-guide").href = CONFIG.GUIDE_URL + (CONFIG.GUIDE_URL.indexOf("?") > -1 ? "&" : "?") + "sid=" + encodeURIComponent(state.session_id);
+      $("lf-guide").hidden = false;
+    }
+    if (state.anyway) { $("lf-anyway").hidden = true; showCalendar(false); }
+  }
+
+  // Option buttons (steps 1, 3, 4)
+  form.addEventListener("click", function (e) {
+    var opt = e.target.closest ? e.target.closest(".lf-opt") : null;
+    if (!opt) return;
+    var n = Number(opt.closest(".lf-step").getAttribute("data-step"));
+    var field = opt.parentNode.getAttribute("data-field");
+    state.answers[field] = opt.getAttribute("data-value");
+    track("form_step_" + n);
+    if (n >= 3) state.saved_step = Math.max(state.saved_step, n);
+    persist();
+    save(); // no-op on step 1: nothing is sent before an email exists
+    show(n + 1, true);
+  });
+
+  // Step 2: name + email
+  function readContact() {
+    state.answers.first_name = $("lf-name").value.trim();
+    state.answers.email = $("lf-email").value.trim().toLowerCase();
+  }
+  $("lf-email").addEventListener("blur", function () {
+    readContact();
+    if (!EMAIL_RE.test(state.answers.email)) return;
+    state.saved_step = Math.max(state.saved_step, 2);
+    persist(); save();
+  });
+  form.querySelector('[data-step="2"]').addEventListener("submit", function (e) {
+    e.preventDefault();
+    readContact();
+    var err = $("lf-error"), msg = "";
+    if (!state.answers.first_name) msg = "Add your first name.";
+    else if (!EMAIL_RE.test(state.answers.email)) msg = "Enter a valid email address.";
+    if (msg) {
+      err.textContent = msg; err.hidden = false;
+      (state.answers.first_name ? $("lf-email") : $("lf-name")).focus();
+      return;
+    }
+    err.hidden = true;
+    state.saved_step = Math.max(state.saved_step, 2);
+    track("form_step_2");
+    persist(); save();
+    show(3, true);
+  });
+
+  // Step 5: optional website + Instagram, then route
+  form.querySelector('[data-step="5"]').addEventListener("submit", function (e) {
+    e.preventDefault();
+    state.answers.website = $("lf-website").value.trim();
+    state.answers.instagram = $("lf-instagram").value.trim();
+    state.saved_step = 5;
+    track("form_step_5");
+    track("form_complete");
+    track(QUALIFIED_SPEND[state.answers.meta_spend] ? "qualified" : "unqualified");
+    persist(); save();
+    show("result", true);
+  });
+
+  $("lf-anyway").addEventListener("click", function () {
+    state.anyway = true; persist();
+    track("book_anyway_click");
+    $("lf-anyway").hidden = true;
+    showCalendar(true);
+  });
+
+  $("lf-back").addEventListener("click", function () {
+    if (typeof state.step === "number" && state.step > 1) show(state.step - 1, true);
+  });
+
+  // Restore typed values, then resume where they left off (no focus steal on load).
+  $("lf-name").value = state.answers.first_name || "";
+  $("lf-email").value = state.answers.email || "";
+  $("lf-website").value = state.answers.website || "";
+  $("lf-instagram").value = state.answers.instagram || "";
+  show(state.step || 1, false);
+
+  // Custom event on every "Book" click.
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest ? e.target.closest("[data-book]") : null;
+    if (el) track("book_click", { location: el.getAttribute("data-book") });
+  });
+})();
+</script>
+</body>
+</html>
