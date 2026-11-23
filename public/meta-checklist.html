@@ -582,6 +582,20 @@ footer .wrap { max-width: 1120px; }
   }
   function remember() { try { localStorage.setItem(GUIDE_KEY, JSON.stringify(guide)); } catch (e) {} }
 
+  // Carry the visitor's UTMs along when they click through to the landing page,
+  // so a lead who books from here is still credited to the original source.
+  (function () {
+    var q = [];
+    ["source", "medium", "campaign", "content"].forEach(function (k) {
+      if (guide.utm[k]) q.push("utm_" + k + "=" + encodeURIComponent(guide.utm[k]));
+    });
+    if (!q.length) return;
+    [].forEach.call(document.querySelectorAll('a[href="/"], a[href="/#book"]'), function (link) {
+      var hash = link.getAttribute("href").slice(1); // "" or "#book"
+      link.setAttribute("href", "/?" + q.join("&") + hash);
+    });
+  })();
+
   // The session id the lead is filed under in Notion: the form's (?sid=) or the gate's.
   var sid = params.get("sid") || "";
   var leadSession = guide.unlocked ? guide.session_id : "";
